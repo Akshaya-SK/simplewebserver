@@ -24,32 +24,63 @@ Testing the webserver.
 ```
 from http.server import HTTPServer,BaseHTTPRequestHandler
 
-content='''
-<!doctype html>
-<html>
-<head>
-<title> My Web Server</title>
-</head>
-<body>
-<h1>Welcome</h1>
-</body>
+content = '''<html>
+    <head>
+        <title> Web experiment 1 </title>
+    </head>
+    <body>
+        <table border = "1" style = "border-collapse:collapse" align = "center">
+            <tr>
+                <td>BRAND </td>
+                <td>Lenovo</td>
+            </tr>
+            <tr>
+                <td>MODEL NAME </td>
+                <td>E15 Gen4</td>
+            </tr>
+            <tr>
+                <td>SCREEN SIZE</td>
+                <td>15.6 Inches</td>
+            </tr>
+            <tr>
+                <td>COLOUR</td>
+                <td>Black</td>
+            </tr>
+            <tr>
+                <td>HARD DRIVE SIZE</td>
+                <td>512 GB</td>
+            </tr> 
+            <tr>
+                <td>CPU MODEL</td>
+                <td>Core 15-1235U</td>
+            </tr>
+            <tr>
+                <td>RAM MEMORY</td>
+                <td>8 GB</td>
+            </tr>
+            <tr>
+                <td>OPERATING SYSTEM </td>
+                <td>Windows 11 Home</td>
+            </tr>
+        </table>
+    </body>
 </html>
 '''
 
-class MyServer(BaseHTTPRequestHandler):
+class myhandler(BaseHTTPRequestHandler):
     def do_GET(self):
-        print("Get request received...")
-        self.send_response(200) 
-        self.send_header("content-type", "text/html")       
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
         self.end_headers()
         self.wfile.write(content.encode())
-
-print("This is my webserver") 
-server_address =('',8000)
-httpd = HTTPServer(server_address,MyServer)
+server_address = ('',8000)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
 httpd.serve_forever()
 ```
 ## OUTPUT:
+![image](https://github.com/user-attachments/assets/72513569-ea29-4dd9-aa9f-ce35d9a8a48e)
 
 
 ## RESULT:
